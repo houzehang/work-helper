@@ -1,0 +1,8 @@
+{
+  "name": "workApp",
+  "version": "0.1.0",
+  "main": "main.js",
+  "dependencies": {
+    "jquery.mloading.js": "^0.1.51"
+  }
+}
