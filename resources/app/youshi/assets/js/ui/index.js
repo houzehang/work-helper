@@ -100,11 +100,11 @@ var Common = {
 			Common.ALREADY_START = true;
 			$._refreshView();
 		}
-		let abort = function() {
+		let over = function() {
 			Common.ALREADY_START = false;
 			$._refreshView();
 		}
-		TinyPng.start(fromPath, toPath, formatInfo, talker, md5Map, saveMd5, !!Common.CHECKED_MD5_VERIFY, batchcount, start, abort);
+		TinyPng.start(fromPath, toPath, formatInfo, talker, md5Map, saveMd5, !!Common.CHECKED_MD5_VERIFY, batchcount, start, over);
 	});
 
 	$("#doublebutton2-0").click(function() {

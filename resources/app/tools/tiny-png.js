@@ -14,7 +14,7 @@ function md5File(path, callback) {
 	});
 }
 var TinyPng = {
-	start: function(fromPath, toPath, formatInfo, talker, md5Map, saveMd5, needMd5Verify, batchcount, startYet) {
+	start: function(fromPath, toPath, formatInfo, talker, md5Map, saveMd5, needMd5Verify, batchcount, startYet, over) {
 		__abortSymbol = false;
 
 		////======== 数量计数、时间参数 ========
@@ -24,6 +24,7 @@ var TinyPng = {
 
 		////======== 播报员 ========
 		talker = talker || function() {};
+		over = over || function() {};
 
 		////======== 路径判空 ========
 		if (!fromPath || fromPath == '') {
@@ -138,6 +139,7 @@ var TinyPng = {
 				isInWorking = false;
 				console.log('no file');
 				talker("没有要需要压缩的文件");
+				over();
 				__abortSymbol = true;
 				return;
 			}
@@ -168,6 +170,7 @@ var TinyPng = {
 						if (progress == 100) {
 							saveMd5 && saveMd5();
 							isInWorking = false;
+							over();
 						}
 					}
 					let _timerId = setTimeout(() => {
@@ -178,9 +181,9 @@ var TinyPng = {
 					}, 7000);
 					timerIdHash.push(_timerId);
 					gulp.src(_fromPath)
-						.pipe(tinyPng.gulpPrefixer('WvGQPrg1lrGT6kvVa1KFDaUAwL9n16dF', function(err) {
+						.pipe(tinyPng.gulpPrefixer('VusSG35HZBSFY3xPnD8jQ3g5e7eYLle9', function(err) {
 							err && console.log('test' + err);
-							if (/Credentials/.test(err)) {
+							if (/Credentials|limit/.test(err)) {
 								talker("TinyPng ApiKey无效，请更换");
 							} else {
 								talker(err);
