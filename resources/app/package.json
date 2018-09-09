@@ -1,8 +1,10 @@
 {
-  "name": "workApp",
+  "name": "有师",
   "version": "0.1.0",
   "main": "main.js",
   "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-tinypng": "^1.0.2",
     "jquery.mloading.js": "^0.1.51"
   }
 }
