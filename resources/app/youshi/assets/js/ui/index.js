@@ -3,8 +3,7 @@ var Tools = require(path.resolve(__dirname, "..", "tools/tools.js"));
 var TinyPng = require(path.resolve(__dirname, "..", "tools/tiny-png.js"));
 var AudioLenGetter = require(path.resolve(__dirname, "..", "tools/audio-len-getter.js"));
 var md5MapPath = path.resolve(__dirname, "./cache", "tinyMd5.js");
-var md5Map = {
-};
+var md5Map = {};
 
 var Common = {
 	CHECKED_REPLACE: true,
@@ -15,12 +14,28 @@ var Common = {
 
 (function($) {
 
-	let talker = function(context) {
-		console.log('talker->context = ' + context);
+	let talker = function(context, code) {
+		let color = ''
+		if (code == 1) {
+			color = 'color=red'
+		} else if (code == 2) {
+			color = 'color=orange'
+		} else {
+			color = 'color=green'
+		}
+		context = '<font ' + color + '>' + context + '</font>';
 		$("#talker").html(context);
 	}
-	let talker2 = function(context) {
-		console.log('talker2->context = ' + context);
+	let talker2 = function(context, code) {
+		let color = ''
+		if (code == 1) {
+			color = 'color=red'
+		} else if (code == 2) {
+			color = 'color=orange'
+		} else {
+			color = 'color=green'
+		}
+		context = '<font ' + color + '>' + context + '</font>';
 		$("#talker2").html(context);
 	}
 
@@ -99,6 +114,7 @@ var Common = {
 			png: $("#multiplecheckboxesinline-0-2").attr("checked"),
 			jpg: $("#multiplecheckboxesinline-0-3").attr("checked"),
 		}
+		let apikey = $("#apikey").val();
 		let batchcount = $("#batchcount").val();
 		let start = function() {
 			Common.ALREADY_START = true;
@@ -108,14 +124,14 @@ var Common = {
 			Common.ALREADY_START = false;
 			$._refreshView();
 		}
-		TinyPng.start(fromPath, toPath, formatInfo, talker, md5Map, saveMd5, !!Common.CHECKED_MD5_VERIFY, batchcount, start, over);
+		TinyPng.start(fromPath, toPath, formatInfo, apikey, talker, md5Map, saveMd5, !!Common.CHECKED_MD5_VERIFY, batchcount, start, over);
 	});
 
 	$("#doublebutton2-0").click(function() {
 		if (!Common.ALREADY_START) {
 			return;
 		}
-		talker("已终止");
+		talker("已终止", 2);
 		TinyPng.stop();
 		Common.ALREADY_START = false;
 		$._refreshView();
@@ -142,9 +158,6 @@ var Common = {
 	});
 
 	$("#singlebutton-2").click(function() {
-		if (Common.ALREADY_START) {
-			return;
-		}
 		let fromPath = $("#appendedtext-2").val();
 		let toPath = $("#appendedtext-3").val();
 		AudioLenGetter.start(fromPath, toPath, talker2);

@@ -14,7 +14,7 @@ function md5File(path, callback) {
 	});
 }
 var TinyPng = {
-	start: function(fromPath, toPath, formatInfo, talker, md5Map, saveMd5, needMd5Verify, batchcount, startYet, over) {
+	start: function(fromPath, toPath, formatInfo, apikey, talker, md5Map, saveMd5, needMd5Verify, batchcount, startYet, over) {
 		__abortSymbol = false;
 
 		////======== 数量计数、时间参数 ========
@@ -28,7 +28,12 @@ var TinyPng = {
 
 		////======== 路径判空 ========
 		if (!fromPath || fromPath == '') {
-			talker("资源路径不可为空");
+			talker("资源路径不可为空", 1);
+			return;
+		}
+		////======== apikey判空 ========
+		if (!apikey || apikey == '') {
+			talker("请填写TinypngApiKey", 1);
 			return;
 		}
 
@@ -38,7 +43,7 @@ var TinyPng = {
 		_formatRegExpStr = formatInfo.jpg ? (_formatRegExpStr == "" ? "[.]jpg$" : _formatRegExpStr + "|[.]jpg$") : _formatRegExpStr;
 		console.log("_formatRegExpStr" + _formatRegExpStr);
 		if (_formatRegExpStr == '') {
-			talker("请选择一种需要压缩的图片格式");
+			talker("请选择一种需要压缩的图片格式", 1);
 			return;
 		}
 		var _formatRegExp = new RegExp(_formatRegExpStr);
@@ -73,7 +78,7 @@ var TinyPng = {
 			fs.readdir(filePath, function(err, files) {
 				if (err) {
 					console.warn('readdir err:' + err)
-					talker(err.toString())
+					talker(err.toString(), 1)
 				} else {
 					// console.log(files.length);
 					//遍历读取到的文件列表
@@ -133,13 +138,13 @@ var TinyPng = {
 
 		function startTask(from = 0, to = BATCHCOUNT) {
 			if (__abortSymbol) {
-				talker("已终止");
+				talker("已终止", 2);
 				return;
 			}
 			if (pathArr.length == 0) {
 				isInWorking = false;
 				console.log('no file');
-				talker("没有要需要压缩的文件");
+				talker("没有要需要压缩的文件", 2);
 				over();
 				__abortSymbol = true;
 				return;
@@ -182,12 +187,12 @@ var TinyPng = {
 					}, 7000);
 					timerIdHash.push(_timerId);
 					gulp.src(_fromPath)
-						.pipe(tinyPng.gulpPrefixer('VusSG35HZBSFY3xPnD8jQ3g5e7eYLle9', function(err) {
+						.pipe(tinyPng.gulpPrefixer(apikey || '', function(err) {
 							err && console.log('test' + err);
 							if (/Credentials|limit/.test(err)) {
-								talker("TinyPng ApiKey无效，请更换");
+								talker("TinyPng ApiKey无效，请更换", 1);
 							} else {
-								talker(err);
+								talker(err, 1);
 							}
 							__abortSymbol = true;
 						}))

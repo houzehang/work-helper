@@ -21,13 +21,13 @@ var AudioLenGetter = {
 
 		////======== fromPath判空 ========
 		if (!fromPath || fromPath == '') {
-			talker("资源路径不可为空");
+			talker("资源路径不可为空", 1);
 			return;
 		}
 
 		////======== toPath判空 ========
 		if (!toPath || toPath == '') {
-			talker("请选择导出路径");
+			talker("请选择导出路径", 1);
 			return;
 		}
 
@@ -47,7 +47,7 @@ var AudioLenGetter = {
 			fs.readdir(filePath, function(err, files) {
 				if (err) {
 					console.warn('readdir err:' + err)
-					talker(err.toString())
+					talker(err.toString(),1)
 				} else {
 					// console.log(files.length);
 					//遍历读取到的文件列表

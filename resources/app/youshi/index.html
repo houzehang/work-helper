@@ -65,10 +65,10 @@
           <div class="control-group">
             <label class="control-label" for=""></label>
             <div class="controls">
-              <label class="checkbox inline" for="multiplecheckboxesinline-0-0">
+          <!--     <label class="checkbox inline" for="multiplecheckboxesinline-0-0">
                 <input type="checkbox" name="multiplecheckboxesinline-0" id="multiplecheckboxesinline-0-0" value="压缩后替换源文件">
                 压缩后替换源文件
-              </label>
+              </label> -->
               <label class="checkbox inline" for="multiplecheckboxesinline-0-1" title="压缩前会和上次压缩完生成的文件MD5码校验，相同则不再压缩">
                 <input type="checkbox" name="multiplecheckboxesinline-1" id="multiplecheckboxesinline-0-1" value="开启MD5过滤">
                 开启MD5过滤
@@ -85,7 +85,7 @@
           </div>
 
           <!-- Appended Input-->
-          <div class="control-group">
+<!--           <div class="control-group">
             <label class="control-label" for="appendedtext-1">导出目录</label>
             <div class="controls">
               <div class="input-append">
@@ -93,13 +93,19 @@
                 <span id="doublebutton-1" name="doublebutton-1" class="btn btn-success">选择导出目录</span>
               </div>
             </div>
-          </div>
+          </div> -->
           
           <!-- Appended checkbox -->
           <div class="control-group">
             <label class="control-label" for="appendedcheckbox-0">并行执行数量</label>
             <div class="controls">
                 <input id="batchcount" name="appendedcheckbox-0" class="span1" type="number" placeholder="≤10" value="5" oninput="batchCountChanged()">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="appendedtext-4">TinypngApiKey</label>
+            <div class="controls">
+                <input id="apikey" name="appendedtext-4" class="input-large" type="number" placeholder="" value="">
             </div>
           </div>
 
