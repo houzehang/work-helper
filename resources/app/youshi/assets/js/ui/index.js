@@ -1,9 +1,9 @@
 var path = require('path');
 var Tools = require(path.resolve(__dirname, "..", "tools/tools.js"));
 var TinyPng = require(path.resolve(__dirname, "..", "tools/tiny-png.js"));
+var AudioLenGetter = require(path.resolve(__dirname, "..", "tools/audio-len-getter.js"));
 var md5MapPath = path.resolve(__dirname, "./cache", "tinyMd5.js");
 var md5Map = {
-	name: 'afhadf'
 };
 
 var Common = {
@@ -17,7 +17,11 @@ var Common = {
 
 	let talker = function(context) {
 		console.log('talker->context = ' + context);
-		$("#talker").text(context);
+		$("#talker").html(context);
+	}
+	let talker2 = function(context) {
+		console.log('talker2->context = ' + context);
+		$("#talker2").html(context);
 	}
 
 	let saveMd5 = function() {
@@ -38,7 +42,7 @@ var Common = {
 		}
 	});
 
-	////======== UI ========
+	////======== TinyPng ========
 
 	$._refreshView = function() {
 		$("#multiplecheckboxesinline-0-0").attr("checked", !!Common.CHECKED_REPLACE);
@@ -116,4 +120,34 @@ var Common = {
 		Common.ALREADY_START = false;
 		$._refreshView();
 	});
+
+
+	////======== 音频时长获取 ========
+
+	$("#doublebutton-2").click(function() {
+		var _resourcePath = dialog.showOpenDialog({
+			"title": "选择音频目录",
+			"properties": ["openDirectory"]
+		});
+		$("#appendedtext-2").val(_resourcePath);
+	});
+
+
+	$("#doublebutton-3").click(function() {
+		var _resourcePath = dialog.showOpenDialog({
+			"title": "选择导出文件",
+			// "properties": ["openDirectory"]
+		});
+		$("#appendedtext-3").val(_resourcePath);
+	});
+
+	$("#singlebutton-2").click(function() {
+		if (Common.ALREADY_START) {
+			return;
+		}
+		let fromPath = $("#appendedtext-2").val();
+		let toPath = $("#appendedtext-3").val();
+		AudioLenGetter.start(fromPath, toPath, talker2);
+	});
+
 })(jQuery);

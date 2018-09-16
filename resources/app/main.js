@@ -11,7 +11,7 @@ function createWindow () {
   // Create the browser window.
   var winW=electron.screen.getPrimaryDisplay().workAreaSize.width
   var winH=electron.screen.getPrimaryDisplay().workAreaSize.height
-  win = new BrowserWindow({width: winW, height: winH})
+  win = new BrowserWindow({width: 1050, height: 800})
 
   // and load the index.html of the app.
   win.loadURL(url.format({
@@ -32,18 +32,15 @@ function createWindow () {
   })
 
   globalShortcut.register('CommandOrControl+Space', () => {
-    if (win.isMaximized()) {
+    // if (win.isMaximized()) {
       if (win.isFocused()){
         win.minimize();
       }else{
         win.show();
       }
-    }else{
-      win.maximize();
-    }
   });
 
-  win.maximize();
+  win.show();
 }
 
 // This method will be called when Electron has finished

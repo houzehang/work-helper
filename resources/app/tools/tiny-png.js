@@ -72,7 +72,8 @@ var TinyPng = {
 			//根据文件路径读取文件，返回文件列表
 			fs.readdir(filePath, function(err, files) {
 				if (err) {
-					console.warn('11' + err)
+					console.warn('readdir err:' + err)
+					talker(err.toString())
 				} else {
 					// console.log(files.length);
 					//遍历读取到的文件列表
@@ -96,7 +97,7 @@ var TinyPng = {
 										if (needMd5Verify && md5Map[_filedir] == md5) {
 											// console.log('md5 相同，无须压缩');
 										} else {
-											// console.log(_filedir);
+											console.log(_filedir);
 											__tinyCount++;
 											pathArr.push(_filedir);
 											pathParentArr.push(_filedir.substring(0, _filedir.lastIndexOf('\\')));

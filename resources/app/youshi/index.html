@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Tinypng-Helper 1.0.0</title>
+    <title>派派</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -47,14 +47,14 @@
     <form class="form-horizontal" >
       <fieldset>
         <!-- Form Name -->
-        <legend>设置</legend>
+        <legend>图片压缩</legend>
         <div id="main-workspace">
           <!-- Appended Input-->
           <div class="control-group">
             <label class="control-label" for="appendedtext-0">压缩资源目录</label>
             <div class="controls">
               <div class="input-append">
-                <input id="appendedtext-0" name="appendedtext-0" class="input-xlarge" placeholder="选择资源目录" type="text">
+                <input id="appendedtext-0" name="appendedtext-0" class="input-xlarge" placeholder="" type="text">
                 <span id="doublebutton-0" name="doublebutton-0" class="btn btn-success">选择资源目录</span>
               </div>
               
@@ -89,7 +89,7 @@
             <label class="control-label" for="appendedtext-1">导出目录</label>
             <div class="controls">
               <div class="input-append">
-                <input id="appendedtext-1" name="appendedtext-1" class="input-xlarge" placeholder="选择导出目录" disabled="disabled" type="text">
+                <input id="appendedtext-1" name="appendedtext-1" class="input-xlarge" placeholder="" disabled="disabled" type="text">
                 <span id="doublebutton-1" name="doublebutton-1" class="btn btn-success">选择导出目录</span>
               </div>
             </div>
@@ -133,6 +133,54 @@
             <label class="control-label" for="singlebutton-1"></label>
             <div class="controls">
               <span id="singlebutton-1" name="singlebutton-1" class="btn btn-primary">安装npm依赖</span>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+
+    <form class="form-horizontal" >
+      <fieldset>
+        <!-- Form Name -->
+        <legend>音频时长获取</legend>
+        <div id="main-workspace">
+          <!-- Appended Input-->
+          <div class="control-group">
+            <label class="control-label" for="appendedtext-2">音频所在目录</label>
+            <div class="controls">
+              <div class="input-append">
+                <input id="appendedtext-2" name="appendedtext-2" class="input-xlarge" placeholder="" type="text">
+                <span id="doublebutton-2" name="doublebutton-2" class="btn btn-success">选择音频目录</span>
+              </div>
+              
+            </div>
+          </div>
+
+          <!-- Appended Input-->
+          <div class="control-group">
+            <label class="control-label" for="appendedtext-3">导出文件</label>
+            <div class="controls">
+              <div class="input-append">
+                <input id="appendedtext-3" name="appendedtext-3" class="input-xlarge" placeholder="" type="text">
+                <span id="doublebutton-3" name="doublebutton-3" class="btn btn-success">选择导出文件</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Appended checkbox -->
+          <div class="control-group">
+            <label class="control-label" for="curprogress-0">当前状态</label>
+            <div class="controls">
+              <label id="talker2" class="help-block" style="font-weight: bold; line-height: 31px; color: #5dba5d">空闲中</label>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="control-group">
+            <label class="control-label" for="singlebutton-2"></label>
+            <div class="controls">
+              <span id="singlebutton-2" name="singlebutton-2" class="btn btn-primary">开始获取</span>
+              <!-- <span id="doublebutton2-2" name="doublebutton2-2" class="btn btn-danger">终止</span> -->
             </div>
           </div>
         </div>
